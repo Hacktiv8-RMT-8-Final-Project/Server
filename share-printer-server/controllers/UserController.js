@@ -19,13 +19,11 @@ class UserController {
   static async login(req, res, next) {
     try {
       const { email, password } = req.body
-      console.log(req.body, 'ini <<<');
       const user = await User.findOne({ where: { email } })
       if (!user) throw { status: 400, msg: `Invalid email or password` }
       const comparedPassword = comparePass(password, user.password)
       if (!comparedPassword) throw { status: 400, msg: `Invalid email or password` }
       const access_token = generateToken({ id: user.id, email: user.email })
-      console.log(access_token, 'ini at');
       res.status(200).json({
         msg: `Login success, access token granted`,
         email: user.email,
