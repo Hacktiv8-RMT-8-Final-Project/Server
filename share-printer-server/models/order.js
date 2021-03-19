@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "cascade",
       },
       email_user: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: {
           model: "Users",
           key: "email",

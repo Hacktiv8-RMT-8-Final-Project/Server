@@ -15,7 +15,7 @@ router.get("/detail/:id", ShopController.read_details)
 router.put("/detail/:id", authorizeShop, ShopController.update_details)
 
 router.get("/order_lists", authorizeShop, OrderShopController.read)
-router.put("/order_lists/:id", authorizeShop, OrderShopController.read_by_id)
+router.patch("/order_lists/:id", authorizeShop, OrderShopController.update_by_id)
 router.get("/transaction_history", authorizeShop, OrderShopController.read_all_completed_shop_orders)
 
 module.exports = router

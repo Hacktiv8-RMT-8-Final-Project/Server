@@ -62,7 +62,10 @@ class ShopController {
       if (count === 0) {
         throw { status: 404, msg: `Data not found` }
       } else {
-        res.status(200).json({ data: data[0] })
+        res.status(200).json({
+          msg: "successfully updated data",
+          data: data[0],
+        })
       }
     } catch (err) {
       next(err)
