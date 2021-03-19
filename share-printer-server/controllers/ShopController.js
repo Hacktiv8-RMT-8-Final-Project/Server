@@ -2,7 +2,7 @@ const { Shop } = require("../models")
 const { hashPass, comparePass } = require("../helpers/bcrypt.js")
 const { generateToken, decoded } = require("../helpers/jwt.js")
 
-class ControllerShop {
+class ShopController {
   static async register(req, res, next) {
     try {
       const { name, location, email, password, products } = req.body
@@ -40,4 +40,4 @@ class ControllerShop {
   }
 }
 
-module.exports = ControllerShop
+module.exports = ShopController

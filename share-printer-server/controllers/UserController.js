@@ -2,7 +2,7 @@ const { User } = require("../models")
 const { hashPass, comparePass } = require("../helpers/bcrypt.js")
 const { generateToken, decoded } = require("../helpers/jwt.js")
 
-class ControllerUser {
+class UserController {
   static async register(req, res, next) {
     try {
       const { username, email, password } = req.body
@@ -23,7 +23,6 @@ class ControllerUser {
 
       if (!user) throw { status: 400, msg: `Invalid email or password` }
       const comparedPassword = comparePass(password, user.password)
-
       if (!comparedPassword) throw { status: 400, msg: `Invalid email or password` }
       const access_token = generateToken({ id: user.id, email: user.email })
 
@@ -39,4 +38,4 @@ class ControllerUser {
   }
 }
 
-module.exports = ControllerUser
+module.exports = UserController
