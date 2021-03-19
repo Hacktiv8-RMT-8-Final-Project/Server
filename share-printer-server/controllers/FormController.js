@@ -5,12 +5,8 @@ class FormController {
     try {
       const { files_url, order_content } = req.body
       const order_number = uuid.v1()
-      console.log(req.decoded)
-      // payments status = default 1 belum dibayar
-      // ! email user < req.decoded.email
-      // ! shop id ?
-      // ! buy price ?
-      // transaction_receipt
+      const { email } = req.decoded
+      // ! shop id << buy price ? Explore Google Map
     } catch (err) {
       next(err)
     }

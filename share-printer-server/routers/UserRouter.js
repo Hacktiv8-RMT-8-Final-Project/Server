@@ -4,8 +4,8 @@ const router = Router()
 const UserController = require("../controllers/UserController.js")
 const FormController = require("../controllers/FormController.js")
 
-const { authenticateUser, authenticateShop } = require("../middlewares/authenticate.js")
-const { authorizeUser, authorizeShop } = require("../middlewares/authorize.js")
+const { authenticateUser } = require("../middlewares/authenticate.js")
+const { authorizeUser } = require("../middlewares/authorize.js")
 
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
