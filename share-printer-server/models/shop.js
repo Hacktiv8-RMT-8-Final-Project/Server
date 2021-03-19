@@ -19,17 +19,19 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: "Name Cannot be Empty",
+            msg: "Name can not be empty",
           },
         },
       },
-      products: DataTypes.JSON,
+      products: {
+        type: DataTypes.JSON,
+      },
       location: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: {
             args: true,
-            msg: "Location Cannot Be Empty",
+            msg: "Location can not be empty",
           },
         },
       },
@@ -38,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: "Status Open Cannot Be Empty",
+            msg: "Status open can not be empty",
           },
         },
       },
@@ -46,12 +48,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: {
           args: true,
-          msg: "Email Already Taken",
+          msg: "Email already taken",
         },
         validate: {
           notEmpty: {
             args: true,
-            msg: "Email Cannot Be Empty",
+            msg: "Email can not be empty",
           },
         },
       },
@@ -60,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: "Password Cannot Be Empty",
+            msg: "Password can not be empty",
           },
         },
       },
