@@ -7,6 +7,7 @@ const { Error, ValidationError } = require("sequelize")
  * @param {import("express").NextFunction} next
  */
 const errorHandler = (err, req, res, next) => {
+  console.log(err, `<<<<<<<`)
   // ! Error sequelize
   if (err instanceof Error) {
     switch (true) {
@@ -28,22 +29,22 @@ const errorHandler = (err, req, res, next) => {
   switch (err.status) {
     case 400:
       res.status(400).json({
-        msg: `Bad request`,
+        msg: err.msg || `Bad request`,
       })
       return
     case 401:
       res.status(401).json({
-        msg: `Unauthorized`,
+        msg: err.msg || `Unauthorized`,
       })
       return
     case 403:
       res.status(403).json({
-        msg: `Forbidden`,
+        msg: err.msg || `Forbidden`,
       })
       return
     case 404:
       res.status(404).json({
-        msg: `Error not found`,
+        msg: err.msg || `Error not found`,
       })
       return
   }
