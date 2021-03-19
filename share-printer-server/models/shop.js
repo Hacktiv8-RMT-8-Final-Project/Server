@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       status_open: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
         validate: {
           notEmpty: {
             args: true,
