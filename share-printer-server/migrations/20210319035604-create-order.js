@@ -22,6 +22,20 @@ module.exports = {
           },
         },
       },
+      order_content: {
+        type: Sequelize.JSON,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: `Order content must not be empty`,
+          },
+          notNull: {
+            args: true,
+            msg: `Order content is required`,
+          },
+        },
+      },
       files_url: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -29,6 +43,20 @@ module.exports = {
           notEmpty: {
             args: true,
             msg: `File URL must not be empty`,
+          },
+          notNull: {
+            args: true,
+            msg: `File URL is required`,
+          },
+        },
+      },
+      order_price: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: `Shop Id must not be empty`,
           },
           notNull: {
             args: true,
@@ -58,20 +86,6 @@ module.exports = {
           key: "email",
         },
       },
-      buy_price: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Shop Id must not be empty`,
-          },
-          notNull: {
-            args: true,
-            msg: `File URL is required`,
-          },
-        },
-      },
       payment_status: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -87,33 +101,8 @@ module.exports = {
           },
         },
       },
-      prove_of_transaction: {
+      proof_receipt_transaction: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Shop Id must not be empty`,
-          },
-          notNull: {
-            args: true,
-            msg: `File URL is required`,
-          },
-        },
-      },
-      order_content: {
-        type: Sequelize.JSON,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Order content must not be empty`,
-          },
-          notNull: {
-            args: true,
-            msg: `Order content is required`,
-          },
-        },
       },
       createdAt: {
         allowNull: false,
