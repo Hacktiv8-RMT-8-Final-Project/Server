@@ -1,9 +1,7 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict"
+const { Model } = require("sequelize")
 
-const {hashPass} = require('../helpers/bcrypt')
+const { hashPass } = require("../helpers/bcrypt")
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -15,55 +13,58 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  User.init({
-    username: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: 'Username Cannot Be Empty'
-        }
-      }
-    },
-    email: {
-      type: DataTypes.STRING,
-      unique: {
-        args: true,
-        msg: 'Email Invalid / Email Already Taken'
+  }
+  User.init(
+    {
+      username: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Username Cannot Be Empty",
+          },
+        },
       },
-      validate: {
-        notEmpty: {
+      email: {
+        type: DataTypes.STRING,
+        unique: {
           args: true,
-          msg: 'Email Cannot Be Empty'
+          msg: "Email Already Taken",
         },
-        isEmail: {
-          args: true,
-          msg: 'Email Invalid'
-        }
-      }
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Email Cannot Be Empty",
+          },
+          isEmail: {
+            args: true,
+            msg: "Email Invalid",
+          },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Password Cannot Be Empty",
+          },
+          len: {
+            args: 6,
+            msg: "Password must be at least 6 characters",
+          },
+        },
+      },
     },
-    password: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: 'Password Cannot Be Empty'
+    {
+      hooks: {
+        beforeCreate(user, opt) {
+          user.password = hashPass(user.password)
         },
-        len: {
-          args: 6,
-          msg: 'Password must be at least 6 characters'
-        }
-      }
+      },
+      sequelize,
+      modelName: "User",
     }
-  }, {
-    hooks: {
-      beforeCreate(user, opt){
-        user.password = hashPass(user.password)
-      }
-    },
-    sequelize,
-    modelName: 'User',
-  });
-  return User;
-};
+  )
+  return User
+}

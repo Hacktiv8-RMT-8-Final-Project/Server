@@ -1,3 +1,11 @@
+const { Error, ValidationError } = require("sequelize")
+
+/**
+ * @param {*} err
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @param {import("express").NextFunction} next
+ */
 const errorHandler = (err, req, res, next) => {
   // ! Error sequelize
   if (err instanceof Error) {

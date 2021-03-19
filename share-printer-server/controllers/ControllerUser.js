@@ -1,47 +1,39 @@
-const {User} = require('../models')
-const {generateToken} = require('../helpers/jwt')
+const { User } = require("../models")
+const { hashPass, comparePass } = require("../helpers/bcrypt.js")
+const { generateToken, decoded } = require("../helpers/jwt.js")
 
 class ControllerUser {
   static async register(req, res, next) {
     try {
-      let username = req.body.username || ''
-      let email = req.body.email || ''
-      let password = req.body.password || ''
-      let user = await User.create({username, email, password})
-      res.status(201).json(user)
-    }catch(err) {
-      console.log(err)
+      const { username, email, password } = req.body
+      const user = await User.create({ username, email, password })
+      res.status(201).json({
+        msg: "Register success",
+        id: user.id,
+        email: user.email,
+      })
+    } catch (err) {
       next(err)
     }
   }
-
   static async login(req, res, next) {
     try {
-      let email = req.body.email || ''
-      let password = req.body.password || ''
-      let user = await User.findOne({where: {email}})
-      if(user) {
-        const comparePass = comparePass(passwo)
-        if(comparePass){
-          const access_token = generateToken({id: user.id, email})
-          res.status(200).json(access_token)
-        } else {
-          throw {
-            name: 'customError',
-            status: 400,
-            message: 'Email / Password Invalid'
-          }
-        }
-      } else {
-        throw {
-          name: 'customError',
-          status: 400,
-          message: 'Email / Password Invalid'
-        }
-      }
-    }
-    catch(err) {
-      console.log(err)
+      const { email, password } = req.body
+      const user = await User.findOne({ where: { email } })
+
+      if (!user) throw { status: 400, msg: `Invalid email or password` }
+      const comparedPassword = comparePass(password, user.password)
+
+      if (!comparedPassword) throw { status: 400, msg: `Invalid email or password` }
+      const access_token = generateToken({ id: user.id, email: user.email })
+
+      res.status(200).json({
+        msg: `Login success, access token granted`,
+        email: user.email,
+        username: user.username,
+        access_token: access_token,
+      })
+    } catch (err) {
       next(err)
     }
   }
