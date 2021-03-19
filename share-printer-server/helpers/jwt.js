@@ -1,14 +1,12 @@
-const jwt = require('jsonwebtoken')
+//@ts-check
+const jwt = require("jsonwebtoken")
 
-const generateToken = (payload) => {
-  return jwt.sign(payload, 'secret')
+function generateToken(payload) {
+  return jwt.sign(payload, process.env.JWT_SECRET)
 }
 
-const verifyToken = (payload) => {
-  return jwt.verify(payload, 'secret')
+function decoded(payload) {
+  return jwt.decode(payload, { complete: true })
 }
 
-module.exports = {
-  generateToken,
-  verifyToken
-}
+module.exports = { generateToken, decoded }
