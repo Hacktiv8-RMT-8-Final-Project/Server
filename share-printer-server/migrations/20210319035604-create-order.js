@@ -67,15 +67,9 @@ module.exports = {
       shop_Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Shop Id must not be empty`,
-          },
-          notNull: {
-            args: true,
-            msg: `File URL is required`,
-          },
+        references: {
+          model: "Shops",
+          key: "id",
         },
       },
       email_user: {
