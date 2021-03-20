@@ -2,7 +2,7 @@ const { Shop } = require("../models")
 const { hashPass, comparePass } = require("../helpers/bcrypt.js")
 const { generateToken, decoded } = require("../helpers/jwt.js")
 
-class ControllerShop {
+class ShopController {
   static async register(req, res, next) {
     try {
       const { name, location, email, password, products } = req.body
@@ -38,6 +38,39 @@ class ControllerShop {
       next(err)
     }
   }
+  static async read_details(req, res, next) {
+    try {
+      const { id, email } = req.decoded
+      const shop = await Shop.findOne({ where: { email } })
+      res.status(200).json({
+        msg: `Successfully read shop details`,
+        data: shop,
+      })
+    } catch (err) {
+      next(err)
+    }
+  }
+  static async update_details(req, res, next) {
+    try {
+      const { id, email } = req.decoded
+      const { name, location, products, status_open } = req.body
+      const updateData = { name, products, location, status_open }
+      const [count, data] = await Shop.update(updateData, {
+        where: { email },
+        returning: true,
+      })
+      if (count === 0) {
+        throw { status: 404, msg: `Data not found` }
+      } else {
+        res.status(200).json({
+          msg: "successfully updated data",
+          data: data[0],
+        })
+      }
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
-module.exports = ControllerShop
+module.exports = ShopController

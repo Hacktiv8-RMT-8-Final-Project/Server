@@ -41,7 +41,7 @@ module.exports = {
       },
       status_open: {
         type: Sequelize.BOOLEAN,
-        default: false,
+        defaultValue: true,
       },
       email: {
         type: Sequelize.STRING,

@@ -13,14 +13,61 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
-      order_number: DataTypes.STRING,
-      files_url: DataTypes.STRING,
-      shop_Id: DataTypes.INTEGER,
-      email_user: DataTypes.STRING,
-      buy_price: DataTypes.INTEGER,
-      payment_status: DataTypes.INTEGER,
-      prove_of_transaction: DataTypes.STRING,
-      order_content: DataTypes.JSON,
+      order_number: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Order number can not be empty",
+          },
+        },
+      },
+      order_content: {
+        type: DataTypes.JSONB,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Order content can not be empty",
+          },
+        },
+      },
+      files_url: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "File URL can not be empty",
+          },
+        },
+      },
+      order_price: {
+        type: DataTypes.INTEGER,
+      },
+      shop_Id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Shops",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      },
+      email_user: {
+        type: DataTypes.STRING,
+        references: {
+          model: "Users",
+          key: "email",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      },
+      payment_status: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
+      proof_receipt_transaction: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
