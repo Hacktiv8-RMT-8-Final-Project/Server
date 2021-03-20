@@ -1,13 +1,9 @@
 const request = require('supertest')
 const app = require('../app')
 const {sequelize} = require('../models')
+const { User } = require('../models')
 
-let userIdTest = 0
-
-afterAll((done) => {
-  sequelize.close()
-  done()
-})
+// let userIdTest = 0
 
 describe('POST /user/register', function() {
   const body = {
@@ -160,3 +156,18 @@ describe('POST /user/login', function() {
       });
   });
 });
+
+afterAll((done) => {
+  User
+    .destroy({where:{email:'siomay@mail.com'}})
+    .then(user => {
+      console.log('user has been deleted', 'ini >>>> afterAllTest');
+      sequelize.close()
+      done()
+    })
+    .catch(err => {
+      console.log(err, '>>>> afterAllTest');
+      sequelize.close()
+      done()
+    })
+})
