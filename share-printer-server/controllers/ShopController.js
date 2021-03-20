@@ -5,8 +5,8 @@ const { generateToken, decoded } = require("../helpers/jwt.js")
 class ShopController {
   static async register(req, res, next) {
     try {
-      const { name, location, email, password, products } = req.body
-      const shop = await Shop.create({ name, location, email, password, products })
+      const { name, location, email, password } = req.body
+      const shop = await Shop.create({ name, location, email, password })
       res.status(201).json({
         msg: "Register success",
         id: shop.id,
@@ -40,7 +40,7 @@ class ShopController {
   }
   static async read_details(req, res, next) {
     try {
-      const { id, email } = req.decoded
+      const { email } = req.decoded
       const shop = await Shop.findOne({ where: { email } })
       res.status(200).json({
         msg: `Successfully read shop details`,
@@ -54,7 +54,8 @@ class ShopController {
     try {
       const { id, email } = req.decoded
       const { name, location, products, status_open } = req.body
-      const updateData = { name, products, location, status_open }
+      const coverted_products = JSON.parse(products)
+      const updateData = { name, products: coverted_products, location, status_open }
       const [count, data] = await Shop.update(updateData, {
         where: { email },
         returning: true,
