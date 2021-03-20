@@ -18,16 +18,16 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: `Order number must not be empty`,
+            msg: "Order number can not be empty",
           },
         },
       },
       order_content: {
-        type: DataTypes.JSON,
+        type: DataTypes.JSONB,
         validate: {
           notEmpty: {
             args: true,
-            msg: `Order content must not be empty`,
+            msg: "Order content can not be empty",
           },
         },
       },
@@ -36,18 +36,12 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: `Order content must not be empty`,
+            msg: "File URL can not be empty",
           },
         },
       },
       order_price: {
         type: DataTypes.INTEGER,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Order content must not be empty`,
-          },
-        },
       },
       shop_Id: {
         type: DataTypes.INTEGER,
@@ -69,12 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       payment_status: {
         type: DataTypes.INTEGER,
-        validate: {
-          notEmpty: {
-            args: true,
-            msg: `Payment status must not be empty`,
-          },
-        },
+        defaultValue: 1,
       },
       proof_receipt_transaction: {
         type: DataTypes.STRING,
