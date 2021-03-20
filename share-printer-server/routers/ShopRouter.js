@@ -11,7 +11,7 @@ router.post("/register", ShopController.register)
 router.post("/login", ShopController.login)
 
 router.use(authenticateShop)
-router.get("/detail/:id", ShopController.read_details)
+router.get("/detail", ShopController.read_details)
 router.put("/detail/:id", authorizeShop, ShopController.update_details)
 
 router.get("/order_lists", authorizeShop, OrderShopController.read)
