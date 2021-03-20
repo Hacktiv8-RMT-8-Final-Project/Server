@@ -12,12 +12,12 @@ router.post("/login", UserController.login)
 
 router.use(authenticateUser)
 router.post("/form", authorizeUser, FormController.create_print_request)
-router.post("/upload_receipt", authorizeUser, FormController.create_print_request)
+router.put("/upload_receipt", authorizeUser, FormController.upload_receipt)
 
-router.get("/status_orders", authorizeUser, FormController.create_print_request)
-router.put("/status_orders/:id", authorizeUser, FormController.create_print_request)
+router.get("/status_orders", authorizeUser, FormController.read_orders)
+router.put("/status_orders/:id", authorizeUser, FormController.cancel_order_status_payment)
 
-router.get("/transaction_history", authorizeUser, FormController.create_print_request)
-router.post("/detail_shop/:id", authorizeUser, FormController.create_print_request)
+router.get("/transaction_history", authorizeUser, FormController.read_history_orders)
+router.get("/shop_list", authorizeUser, FormController.shop_list)
 
 module.exports = router

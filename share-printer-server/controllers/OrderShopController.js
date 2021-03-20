@@ -4,7 +4,6 @@ const { User, Shop, Order } = require("../models")
 const { hashPass, comparePass } = require("../helpers/bcrypt.js")
 const { generateToken, decoded } = require("../helpers/jwt.js")
 
-// ! 1 order requested 2 paid 3 confirm 4 on progress 5 completed 6 cancel
 class OrderShopController {
   static async read(req, res, next) {
     try {
@@ -18,13 +17,14 @@ class OrderShopController {
         },
       })
       res.status(200).json({
-        msg: `Successfully read all orders that not completed`,
+        msg: `Successfully read all orders that are not completed`,
         data: order,
       })
     } catch (err) {
       next(err)
     }
   }
+  // ! 1 order requested 2 paid 3 confirm 4 on progress 5 completed 6 cancel
   static async update_by_id(req, res, next) {
     try {
       const { id } = req.decoded
@@ -62,7 +62,7 @@ class OrderShopController {
         },
       })
       res.status(200).json({
-        msg: `Successfully read all orders that not completed`,
+        msg: `Successfully read all orders that have been completed`,
         data: order,
       })
     } catch (err) {
