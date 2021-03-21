@@ -1,8 +1,6 @@
 const { Op } = require("sequelize")
 
 const { User, Shop, Order } = require("../models")
-const { hashPass, comparePass } = require("../helpers/bcrypt.js")
-const { generateToken, decoded } = require("../helpers/jwt.js")
 
 class OrderShopController {
   static async read(req, res, next) {

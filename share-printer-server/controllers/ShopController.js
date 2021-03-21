@@ -54,9 +54,38 @@ class ShopController {
     try {
       const { id, email } = req.decoded
       const { name, location, products, status_open } = req.body
-      const coverted_products = JSON.parse(products)
-      const updateData = { name, products: coverted_products, location, status_open }
+      const converted_products = JSON.parse(products)
+      const updateData = { name, products: converted_products, location, status_open }
       const [count, data] = await Shop.update(updateData, {
+        where: { email },
+        returning: true,
+      })
+      if (count === 0) {
+        throw { status: 404, msg: `Data not found` }
+      } else {
+        res.status(200).json({
+          msg: "successfully updated data",
+          data: data[0],
+        })
+      }
+    } catch (err) {
+      next(err)
+    }
+  }
+  static async delete_products_details(req, res, next) {
+    try {
+      const { id, email } = req.decoded
+      const { products_uuid } = req.body
+      const shop = await Shop.findOne({ where: { email } })
+
+      const product_finder = shop.products.map((e) => {
+        if (e[products_uuid] === undefined) return e
+      })
+      const filtered_product_finder = product_finder.filter(function (el) {
+        return el != null
+      })
+      const updated_data = { name: shop.name, products: filtered_product_finder, location: shop.location, status_open: shop.status_open }
+      const [count, data] = await Shop.update(updated_data, {
         where: { email },
         returning: true,
       })
