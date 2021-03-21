@@ -13,6 +13,7 @@ router.post("/login", ShopController.login)
 router.use(authenticateShop)
 router.get("/detail", ShopController.read_details)
 router.put("/detail/:id", authorizeShop, ShopController.update_details)
+router.delete("/detail/:id", authorizeShop, ShopController.delete_products_details)
 
 router.get("/order_lists", authorizeShop, OrderShopController.read)
 router.patch("/order_lists/:id", authorizeShop, OrderShopController.update_by_id)
