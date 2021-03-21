@@ -6,7 +6,7 @@ const { User, Shop, Order } = require("../models")
 class FormController {
   static async create_print_request(req, res, next) {
     try {
-      const { files_url, order_content, shop_Id } = req.body
+      const { files_url, order_content, shop_Id, order_price } = req.body
       // * Manual validation error
       let error_bucket = []
       if (!files_url) error_bucket.push("Please input your download file link")
@@ -18,7 +18,6 @@ class FormController {
       const order_number = uuid.v1().toString()
       const { email } = req.decoded
       // ! Need to add logic order_price / harga pembelian yang diambil dari order_content dan products ( pricing dari shop)
-      const order_price = 10000 // ! still hardcode
       const order = await Order.create({
         order_number: order_number,
         order_content: convert_order_content,
