@@ -54,8 +54,8 @@ class ShopController {
     try {
       const { id, email } = req.decoded
       const { name, location, products, status_open } = req.body
-      const converted_products = JSON.parse(products)
-      const updateData = { name, products: converted_products, location, status_open }
+      // const converted_products = JSON.parse(products)
+      const updateData = { name, products, location, status_open }
       const [count, data] = await Shop.update(updateData, {
         where: { email },
         returning: true,
