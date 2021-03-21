@@ -10,35 +10,35 @@ let data = [
     name: `Printer`,
     location: `{id: 0, lat: -6.2041139879292135, lng: 106.8042508374194}`,
     // products: [
-    //   {
-    //     "99f15689-6cb2-4ae0-a7b3-4e5b33a6900c": {
-    //       display_name: "Jilid - A3",
-    //       price: 5000,
-    //       description: "softcover",
+    //     {
+    //       "99f15689-6cb2-4ae0-a7b3-4e5b33a6900c": {
+    //         display_name: "Jilid - A3",
+    //         price: 5000,
+    //         description: "softcover",
+    //       },
     //     },
-    //   },
-    //   {
-    //     "2f12710a-f518-48e4-beed-05f5fba81d7a": {
-    //       display_name: "Print Warna A3 (Per Halaman)",
-    //       price: 2000,
-    //       description: "not for full page colors",
+    //     {
+    //       "2f12710a-f518-48e4-beed-05f5fba81d7a": {
+    //         display_name: "Print Warna A3 (Per Halaman)",
+    //         price: 2000,
+    //         description: "not for full page colors",
+    //       },
     //     },
-    //   },
-    //   {
-    //     "a46b333a-77ae-4234-85f7-7fb5bbb9bfba": {
-    //       display_name: "Jilid - A4",
-    //       price: 8000,
-    //       description: "softcover",
+    //     {
+    //       "a46b333a-77ae-4234-85f7-7fb5bbb9bfba": {
+    //         display_name: "Jilid - A4",
+    //         price: 8000,
+    //         description: "softcover",
+    //       },
     //     },
-    //   },
-    //   {
-    //     "786e860c-5d32-405b-95a2-ac065a9012f5": {
-    //       display_name: "Print Warna A4 (Per Halaman)",
-    //       price: 3000,
-    //       description: "not for full page colors",
+    //     {
+    //       "786e860c-5d32-405b-95a2-ac065a9012f5": {
+    //         display_name: "Print Warna A4 (Per Halaman)",
+    //         price: 3000,
+    //         description: "not for full page colors",
+    //       },
     //     },
-    //   },
-    // ],
+    //   ],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
