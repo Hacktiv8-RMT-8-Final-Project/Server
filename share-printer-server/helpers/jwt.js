@@ -2,8 +2,8 @@
 const jwt = require("jsonwebtoken")
 
 function generateToken(payload) {
-  console.log(payload, 'ini payload');
-  console.log(process.env.JWT_SECRET, 'ini env jwt');
+  console.log(payload, "ini payload")
+  console.log(process.env.JWT_SECRET, "ini env jwt")
   return jwt.sign(payload, process.env.JWT_SECRET)
 }
 
