@@ -17,6 +17,15 @@ class FormController {
       const convert_order_content = JSON.parse(order_content)
       const order_number = uuid.v1().toString()
       const { email } = req.decoded
+
+      // !
+      // console.log(order_number)
+      // console.log(convert_order_content)
+      // console.log(files_url)
+      // console.log(order_price)
+      // console.log(shop_Id)
+      // console.log(email)
+
       // ! Need to add logic order_price / harga pembelian yang diambil dari order_content dan products ( pricing dari shop)
       const order = await Order.create({
         order_number: order_number,
@@ -66,6 +75,10 @@ class FormController {
             [Op.ne]: 5,
           },
         },
+        // includes: {
+        //   models: Shop,
+        //   attributes: ["name"],
+        // },
       })
       res.status(200).json({
         msg: `Successfully read your orders that are not completed`,
