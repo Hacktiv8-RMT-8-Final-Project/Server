@@ -43,8 +43,32 @@ class FormController {
       next(err)
     }
   }
+  static async upload_pdf(req, res, next) {
+    try {
+      console.log(req.body, `<<<`)
+      const { files_url, order_Id } = req.body
+      const [count, data] = await Order.update(
+        {
+          files_url: files_url,
+          payment_status: 2,
+        },
+        { where: { id: order_Id }, returning: true }
+      )
+      if (count === 0) {
+        throw { status: 404, msg: `Data not found` }
+      } else {
+        res.status(200).json({
+          msg: "You have successfully updated your file pdf",
+          data: data,
+        })
+      }
+    } catch (err) {
+      next(err)
+    }
+  }
   static async upload_receipt(req, res, next) {
     try {
+      console.log(req.body, `<<<`)
       const { proof_receipt_transaction, order_Id } = req.body
       const [count, data] = await Order.update(
         {

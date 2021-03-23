@@ -14,6 +14,7 @@ router.get("/shop_list", FormController.shop_list)
 
 router.use(authenticateUser)
 router.post("/form", authorizeUser, FormController.create_print_request)
+router.put("/upload_pdf", authorizeUser, FormController.upload_pdf)
 router.put("/upload_receipt", authorizeUser, FormController.upload_receipt)
 
 router.get("/status_orders", authorizeUser, FormController.read_orders)
