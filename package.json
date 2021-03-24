@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx jest",
     "dev": "NODE_ENV=development nodemon bin/http.js",
-    "start": "nodemon bin/http.js"
+    "start": "node bin/http.js"
   },
   "repository": {
     "type": "git",
