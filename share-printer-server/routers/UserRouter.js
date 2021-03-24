@@ -17,9 +17,9 @@ router.post("/form", authorizeUser, FormController.create_print_request)
 router.put("/upload_pdf", authorizeUser, FormController.upload_pdf)
 router.put("/upload_receipt", authorizeUser, FormController.upload_receipt)
 
-router.get("/status_orders", authorizeUser, FormController.read_orders)
-router.put("/status_orders/:id", authorizeUser, FormController.cancel_order_status_payment)
+router.get("/status_orders", FormController.read_orders)
+router.put("/status_orders/:id", FormController.cancel_order_status_payment)
 
-router.get("/transaction_history", authorizeUser, FormController.read_history_orders)
+router.get("/transaction_history", FormController.read_history_orders)
 
 module.exports = router

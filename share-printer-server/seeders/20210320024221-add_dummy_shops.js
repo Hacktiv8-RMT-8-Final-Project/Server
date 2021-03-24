@@ -48,18 +48,18 @@ let data_products = {
 
 let data = [
   {
-    email: `printer@mail.com`,
+    email: `printer_me@mail.com`,
     password: shop_password,
-    name: `Printer`,
+    name: `Printer ME`,
     location: `{id: 0, lat: -6.2041139879292135, lng: 106.8042508374194}`,
     // products: data_products,
     createdAt: new Date(),
     updatedAt: new Date(),
   },
   {
-    email: `mercuana_printer@mail.com`,
+    email: `mercuane_printer@mail.com`,
     password: shop_password,
-    name: `MercuAna Printer`,
+    name: `MercuAne Printer`,
     location: `{id: 0, lat: -6.21367608579002, lng: 106.73623643541197}`,
     // products: data_products,
     createdAt: new Date(),
