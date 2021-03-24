@@ -43,8 +43,32 @@ class FormController {
       next(err)
     }
   }
+  static async upload_pdf(req, res, next) {
+    try {
+      console.log(req.body, `<<<`)
+      const { files_url, order_Id } = req.body
+      const [count, data] = await Order.update(
+        {
+          files_url: files_url,
+          payment_status: 2,
+        },
+        { where: { id: order_Id }, returning: true }
+      )
+      if (count === 0) {
+        throw { status: 404, msg: `Data not found` }
+      } else {
+        res.status(200).json({
+          msg: "You have successfully updated your file pdf",
+          data: data,
+        })
+      }
+    } catch (err) {
+      next(err)
+    }
+  }
   static async upload_receipt(req, res, next) {
     try {
+      console.log(req.body, `<<<`)
       const { proof_receipt_transaction, order_Id } = req.body
       const [count, data] = await Order.update(
         {
@@ -72,13 +96,13 @@ class FormController {
         where: {
           email_user: email,
           payment_status: {
-            [Op.ne]: 5,
+            [Op.in]: [1, 2, 3, 4, 7],
           },
         },
-        // includes: {
-        //   models: Shop,
-        //   attributes: ["name"],
-        // },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
+        },
       })
       res.status(200).json({
         msg: `Successfully read your orders that are not completed`,
@@ -101,6 +125,10 @@ class FormController {
           payment_status: {
             [Op.ne]: 5,
           },
+        },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
         },
       })
       if (check_order.payment_status === 6) throw { status: 400, msg: "You already cancel your order" }
@@ -128,7 +156,11 @@ class FormController {
       const order = await Order.findAll({
         where: {
           email_user: email,
-          payment_status: 5,
+          payment_status: [5, 6],
+        },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
         },
       })
       res.status(200).json({
