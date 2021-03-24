@@ -24,6 +24,7 @@ module.exports = {
       },
       products: {
         type: Sequelize.JSON,
+        defaultValue: [],
       },
       location: {
         type: Sequelize.STRING,
