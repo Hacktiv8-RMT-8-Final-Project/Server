@@ -96,13 +96,13 @@ class FormController {
         where: {
           email_user: email,
           payment_status: {
-            [Op.ne]: 5,
+            [Op.in]: [1, 2, 3, 4, 7],
           },
         },
-        // includes: {
-        //   models: Shop,
-        //   attributes: ["name"],
-        // },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
+        },
       })
       res.status(200).json({
         msg: `Successfully read your orders that are not completed`,
@@ -125,6 +125,10 @@ class FormController {
           payment_status: {
             [Op.ne]: 5,
           },
+        },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
         },
       })
       if (check_order.payment_status === 6) throw { status: 400, msg: "You already cancel your order" }
@@ -152,7 +156,11 @@ class FormController {
       const order = await Order.findAll({
         where: {
           email_user: email,
-          payment_status: 5,
+          payment_status: [5, 6],
+        },
+        include: {
+          model: Shop,
+          attributes: ["name", "location"],
         },
       })
       res.status(200).json({
