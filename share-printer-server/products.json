@@ -1,0 +1,45 @@
+[
+  {
+    "random-uuid": {
+      "display_name": "Jilid - A3",
+      "price": 10000,
+      "description": "softcover",
+    }
+  },
+  {
+    "random-uuid": {
+      "display_name": "Print Warna A3 (Per Halaman)",
+      "price": 10000,
+      "description": "print colour",
+    }
+  },
+  {
+    "random-uuid": {
+      "display_name": "Print Warna A3 (Per Halaman)",
+      "price": 8000,
+      "description": "print black and white",
+    }
+  },
+    {
+    "random-uuid": {
+      "display_name": "Jilid - A4",
+      "price": 10000,
+      "description": "softcover",
+    }
+  },
+  {
+    "random-uuid": {
+      "display_name": "Print Warna A4 (Per Halaman)",
+      "price": 8000,
+      "description": "print colour",
+    }
+  },
+  {
+    "random-uuid": {
+      "display_name": "Print Warna A4 (Per Halaman)",
+      "price": 6000,
+      "description": "print black and white",
+    }
+  }
+    
+]
