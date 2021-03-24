@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       products: {
         type: DataTypes.JSON,
+        defaultValue: []
       },
       location: {
         type: DataTypes.STRING,
